@@ -1,0 +1,22 @@
+Local Process:
+	•	Test the project: ./gradlew run
+	•	Download and install Docker.
+	•	Build the JAR file: ./gradlew build
+	•	Build the Docker image: docker build -t my-ktor-app .
+	•	Run the Docker container: docker run -p 8080:8080 my-ktor-app
+	•	Test the running Docker container: http://localhost:8080/
+
+Docker:
+	•	Add a Dockerfile to the project’s root directory.
+	•	Add the following content:
+	        FROM openjdk:21-jdk
+            WORKDIR /app
+            COPY . /app
+            RUN chmod +x /app/gradlew
+            RUN ./gradlew --no-daemon dependencies
+            RUN ./gradlew --no-daemon build
+            EXPOSE 8080
+            CMD ["java", "-jar", "build/libs/ServerReferences-all.jar"]
+    Version Control and Hosting:
+    	•	Push the project to GitHub.
+    	•	Deploy the project to a hosting platform that supports Docker.
