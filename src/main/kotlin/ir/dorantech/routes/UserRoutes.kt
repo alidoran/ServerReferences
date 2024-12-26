@@ -26,7 +26,17 @@ fun Application.configureUserRoutes() {
                 call.respond(HttpStatusCode.BadRequest, "Invalid request body")
             }
         }
+        post("/all-user") {
+            try {
+                val userList = userService.getAllUsers()
+                if (userList.isNotEmpty()) {
+                    call.respond(userList)
+                } else {
+                    call.respondText("User not found", status = HttpStatusCode.NotFound)
+                }
+            } catch (e: Exception) {
+                call.respond(HttpStatusCode.BadRequest, "Invalid request body")
+            }
+        }
     }
 }
-
-

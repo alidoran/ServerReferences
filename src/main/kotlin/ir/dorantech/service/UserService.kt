@@ -11,4 +11,8 @@ class UserService {
     fun getUserById(id: Int): UserDto? {
         return users.find { it.id == id }
     }
+
+    fun getAllUsers(): List<UserDto> {
+        return users
+    }
 }
